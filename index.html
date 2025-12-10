@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱宝 - 心理健康疗愈平台</title>
+    <style>
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.navbar-brand h1 {
+    color: #4CAF50;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+}
+
+.nav-item {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: #555;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #4CAF50;
+}
+
+/* 首页横幅样式 */
+.hero {
+    background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.95;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: white;
+    color: #4CAF50;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 部分标题样式 */
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #4CAF50;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* 关于我们样式 */
+.about {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    margin-right: 40px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.image-placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 功能模块样式 */
+.features {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.feature-item {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.feature-item h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* 页脚样式 */
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 50px 0 30px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.footer-info, .footer-links, .footer-contact {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 30px;
+}
+
+.footer-info h3 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-links a {
+    color: #ddd;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #4CAF50;
+}
+
+.footer-contact p {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+/* 心理知识页面样式 */
+.knowledge {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.knowledge-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.knowledge-item {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.knowledge-item h3 {
+    color: #4CAF50;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.knowledge-item p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* 医院合作页面样式 */
+.hospitals {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.hospitals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.hospital-card {
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.hospital-card:hover {
+    transform: translateY(-5px);
+}
+
+.hospital-card h3 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.hospital-card p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* AI心理医生页面样式 */
+.ai-doctor {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.chat-header h3 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.chat-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.chat-messages {
+    height: 500px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    max-width: 70%;
+    margin-bottom: 15px;
+    padding: 15px 20px;
+    border-radius: 20px;
+    word-wrap: break-word;
+}
+
+.message.ai {
+    background-color: #e8f5e9;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.message.user {
+    background-color: #4CAF50;
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-input {
+    padding: 20px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+}
+
+.chat-input form {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.chat-input input:focus {
+    border-color: #4CAF50;
+}
+
+.chat-input button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chat-input button:hover {
+    background-color: #45a049;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+    }
+    
+    .navbar-nav {
+        margin-top: 15px;
+    }
+    
+    .nav-item {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    
+    .hero-content h2 {
+        font-size: 36px;
+    }
+    
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-text {
+        margin-right: 0;
+        margin-bottom: 40px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .message {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 28px;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .about-text {
+        font-size: 16px;
+    }
+    
+    .chat-messages {
+        height: 400px;
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>爱宝</h1>
+            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="index.html" class="nav-link active">首页</a></li>
+                <li class="nav-item"><a href="knowledge.html" class="nav-link">心理知识</a></li>
+                <li class="nav-item"><a href="hospitals.html" class="nav-link">医院合作</a></li>
+                <li class="nav-item"><a href="ai-doctor.html" class="nav-link">AI心理医生</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页横幅 -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>用心倾听，用爱陪伴</h2>
+                <p>爱宝是您的心理健康疗愈伙伴，为您提供专业的心理支持和陪伴</p>
+                <a href="ai-doctor.html" class="btn btn-primary">立即咨询</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 爱宝介绍 -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">关于爱宝</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>爱宝是一个专注于心理健康的疗愈平台，我们致力于为每个人提供温暖、专业的心理支持。</p>
+                    <p>我们与多家专业的心理诊所和医院合作，拥有经验丰富的心理医生团队，同时结合先进的人工智能技术，为您提供24小时不间断的陪伴和咨询服务。</p>
+                    <p>无论您是感到焦虑、抑郁，还是需要有人倾听您的烦恼，爱宝都会以温柔、细心的态度陪伴在您身边，帮助您找到内心的平静和力量。</p>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <svg width="300" height="250" viewBox="0 0 300 250" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="150" cy="125" r="100" fill="#E8F5E9"/>
+                            <path d="M120 90 C120 80 130 80 130 90 C130 100 140 100 140 90 C140 80 150 80 150 90 C150 100 160 100 160 90 C160 80 170 80 170 90" stroke="#4CAF50" stroke-width="3" fill="none"/>
+                            <path d="M110 130 Q150 160 190 130" stroke="#4CAF50" stroke-width="3" fill="none"/>
+                            <circle cx="130" cy="115" r="5" fill="#4CAF50"/>
+                            <circle cx="170" cy="115" r="5" fill="#4CAF50"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要功能 -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">我们的服务</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="#E3F2FD" stroke="#2196F3" stroke-width="2"/>
+                            <path d="M20 25 L25 30 L20 35" stroke="#2196F3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M30 25 L35 30 L30 35" stroke="#2196F3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M40 25 L45 30 L40 35" stroke="#2196F3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>心理知识</h3>
+                    <p>提供专业、易懂的心理健康知识，帮助您更好地了解自己的心理状态。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="#FCE4EC" stroke="#E91E63" stroke-width="2"/>
+                            <path d="M20 20 L40 20 L40 40 L20 40 Z" stroke="#E91E63" stroke-width="3" fill="none"/>
+                            <path d="M25 25 L35 25 L35 35 L25 35 Z" fill="#E91E63"/>
+                            <path d="M28 40 L32 40 L30 45 Z" fill="#E91E63"/>
+                        </svg>
+                    </div>
+                    <h3>医院合作</h3>
+                    <p>与多家专业心理诊所和医院合作，为您提供线下诊疗服务的对接。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="28" fill="#FFF3E0" stroke="#FF9800" stroke-width="2"/>
+                            <path d="M20 30 C20 20 40 20 40 30 C40 40 20 40 20 30 Z" fill="#FF9800"/>
+                            <circle cx="30" cy="25" r="3" fill="white"/>
+                            <path d="M25 35 Q30 40 35 35" stroke="white" stroke-width="3" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>AI心理医生</h3>
+                    <p>24小时在线的AI心理医生，用温柔的语气倾听您的烦恼，给予专业的建议和陪伴。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>爱宝</h3>
+                    <p>用心倾听，用爱陪伴</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">首页</a>
+                    <a href="knowledge.html">心理知识</a>
+                    <a href="hospitals.html">医院合作</a>
+                    <a href="ai-doctor.html">AI心理医生</a>
+                </div>
+                <div class="footer-contact">
+                    <p>联系我们：contact@aibao.com</p>
+                    <p>版权所有 © 2024 爱宝</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+// 导航栏活动状态管理
+function setActiveNav() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// AI心理医生聊天功能
+function initAIDoctor() {
+    const chatMessages = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    
+    if (!chatMessages || !chatForm || !chatInput) return;
+    
+    // AI回复模板
+    const aiResponses = {
+        greetings: [
+            '你好呀！我是爱宝，很高兴能和你聊天。最近过得怎么样呢？',
+            '嗨~ 我是你的心理陪伴小助手爱宝，今天想和我聊聊什么呢？',
+            '你好！我是爱宝，愿意倾听你的烦恼和快乐。'
+        ],
+        sad: [
+            '听到你这么说，我真的很心疼。能告诉我更多一些吗？',
+            '我能感受到你的难过，这种感觉一定很不好受。',
+            '不要独自承受这些情绪，我会一直陪着你的。'
+        ],
+        anxiety: [
+            '焦虑的感觉确实让人不安，让我们一起慢慢梳理一下，好吗？',
+            '我能理解你的焦虑，试着深呼吸，慢慢来，我会陪着你。',
+            '焦虑时不妨试着专注于当下的呼吸，让自己放松下来。'
+        ],
+        happy: [
+            '看到你开心，我也感到很快乐！能和我分享更多细节吗？',
+            '太棒了！快乐是需要分享的，谢谢你告诉我。',
+            '你的笑容一定很灿烂，真希望能看到呢！'
+        ],
+        default: [
+            '我在听呢，你可以继续说下去。',
+            '谢谢你愿意和我分享这些。',
+            '我能理解你的感受。',
+            '听起来你有很多想法，我在这里陪着你。',
+            '如果你愿意，可以告诉我更多关于这件事的情况。'
+        ]
+    };
+    
+    // 发送消息
+    function sendMessage(text, isUser = true) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(isUser ? 'user' : 'ai');
+        messageDiv.textContent = text;
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // AI生成回复
+    function generateAIResponse(userMessage) {
+        const lowerMessage = userMessage.toLowerCase();
+        
+        if (lowerMessage.includes('你好') || lowerMessage.includes('嗨') || lowerMessage.includes('hello')) {
+            return aiResponses.greetings[Math.floor(Math.random() * aiResponses.greetings.length)];
+        }
+        
+        if (lowerMessage.includes('难过') || lowerMessage.includes('伤心') || lowerMessage.includes('不开心') || lowerMessage.includes('难过')) {
+            return aiResponses.sad[Math.floor(Math.random() * aiResponses.sad.length)];
+        }
+        
+        if (lowerMessage.includes('焦虑') || lowerMessage.includes('担心') || lowerMessage.includes('紧张') || lowerMessage.includes('害怕')) {
+            return aiResponses.anxiety[Math.floor(Math.random() * aiResponses.anxiety.length)];
+        }
+        
+        if (lowerMessage.includes('开心') || lowerMessage.includes('快乐') || lowerMessage.includes('高兴') || lowerMessage.includes('棒')) {
+            return aiResponses.happy[Math.floor(Math.random() * aiResponses.happy.length)];
+        }
+        
+        return aiResponses.default[Math.floor(Math.random() * aiResponses.default.length)];
+    }
+    
+    // 处理表单提交
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+        
+        // 发送用户消息
+        sendMessage(userMessage, true);
+        chatInput.value = '';
+        
+        // AI回复
+        setTimeout(() => {
+            const aiResponse = generateAIResponse(userMessage);
+            sendMessage(aiResponse, false);
+        }, 1000);
+    });
+    
+    // 初始欢迎消息
+    setTimeout(() => {
+        sendMessage('你好呀！我是爱宝，你的心理陪伴小助手。无论你有什么烦恼或开心的事，都可以和我分享哦~', false);
+    }, 500);
+}
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', () => {
+    setActiveNav();
+    initAIDoctor();
+});
+    </script>
+</body>
+</html>
